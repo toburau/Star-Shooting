@@ -10,3 +10,9 @@ Godotで3Dにチャレンジ
 アセットはKenney.nl の Space Kit を利用  
 https://kenney.nl/assets/space-kit  
 モデルの表示とカーソルキーでの移動。コリジョンの設定などを試しに実装してみた  
+
+### 100日チャレンジ34日目
+自分視点で動けるようにしてみた  
+Playerシーンを作成して、Camera3Dを追加  
+WSADで移動、マウスでカメラ向き変更  
+スクリプトはChatGPTが作ったものをほぼそのまま利用  

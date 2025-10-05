@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://clnf7jp81ft7r"]
+
+[ext_resource type="Script" uid="uid://bfh7kqrqjqfto" path="res://scripts/player.gd" id="1_4flbx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_onrkg"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_4flbx")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_onrkg")
