@@ -7,7 +7,10 @@
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+fov = 60.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_onrkg")

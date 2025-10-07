@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhjcp37hd5oe8"]
+[gd_scene load_steps=9 format=3 uid="uid://dhjcp37hd5oe8"]
 
 [ext_resource type="PackedScene" uid="uid://85cy3gq75h3r" path="res://models/hangar_roundA.glb" id="1_4msxo"]
 [ext_resource type="PackedScene" uid="uid://clnf7jp81ft7r" path="res://scenes/player.tscn" id="2_5fb3c"]
 [ext_resource type="PackedScene" uid="uid://nyc4f87ootih" path="res://models/craft_cargoA.glb" id="3_gjmho"]
+[ext_resource type="PackedScene" uid="uid://cj0m4b0jwe3ed" path="res://models/meteor.glb" id="4_5fb3c"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_drvgu"]
 
@@ -13,16 +14,6 @@ albedo_color = Color(0.3966081, 0.36109504, 0.06851085, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nxogm"]
 size = Vector3(1.7007446, 0.8041382, 1.4420166)
-
-[sub_resource type="Sky" id="Sky_4msxo"]
-
-[sub_resource type="Environment" id="Environment_nxogm"]
-background_energy_multiplier = 0.0
-sky = SubResource("Sky_4msxo")
-ambient_light_source = 2
-ambient_light_color = Color(0.02745098, 0, 0.94509804, 1)
-ambient_light_energy = 0.0
-reflected_light_source = 2
 
 [node name="Node3D" type="Node3D"]
 
@@ -53,10 +44,27 @@ shape = SubResource("BoxShape3D_nxogm")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.2081201, 0, -0.75976205)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_nxogm")
 
 [node name="Player" parent="." instance=ExtResource("2_5fb3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5522566, 0)
 
 [node name="craft_cargoA2" parent="." instance=ExtResource("3_gjmho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.935114, 0, -7.0229673)
+
+[node name="meteor2" parent="." instance=ExtResource("4_5fb3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3667107, 1.6372776, -2.62369)
+
+[node name="meteor3" parent="." instance=ExtResource("4_5fb3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29914856, 1.3031268, -3.4478097)
+
+[node name="meteor4" parent="." instance=ExtResource("4_5fb3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.698494, 0.45278072, -0.059758663)
+
+[node name="meteor5" parent="." instance=ExtResource("4_5fb3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44436264, 0.54316235, 1.0390692)
+
+[node name="meteor6" parent="." instance=ExtResource("4_5fb3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.726326, -0.4058447, -2.303199)
+
+[node name="meteor7" parent="." instance=ExtResource("4_5fb3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0926018, -0.36065388, -0.9296646)
