@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhjcp37hd5oe8"]
+[gd_scene load_steps=9 format=3 uid="uid://dhjcp37hd5oe8"]
 
+[ext_resource type="Script" uid="uid://dl2s8xos1jjei" path="res://scenes/scene.gd" id="1_5fb3c"]
 [ext_resource type="PackedScene" uid="uid://clnf7jp81ft7r" path="res://scenes/player.tscn" id="2_5fb3c"]
 [ext_resource type="Texture2D" uid="uid://dicfkr133bci6" path="res://images/starmap_8k.jpg" id="2_gjmho"]
+[ext_resource type="PackedScene" uid="uid://d3x2wr58n81y0" path="res://models/meteo_0.glb" id="2_t7and"]
 [ext_resource type="PackedScene" uid="uid://bfp8vn1nd2ah2" path="res://models/craft_speederA.glb" id="3_4msxo"]
-[ext_resource type="PackedScene" uid="uid://cj0m4b0jwe3ed" path="res://models/meteor.glb" id="4_5fb3c"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_t7and"]
 panorama = ExtResource("2_gjmho")
@@ -15,7 +16,9 @@ sky_material = SubResource("PanoramaSkyMaterial_t7and")
 background_mode = 2
 sky = SubResource("Sky_ruw3y")
 
-[node name="Node3D" type="Node3D"]
+[node name="Stage" type="Node3D"]
+script = ExtResource("1_5fb3c")
+meteor_scene = ExtResource("2_t7and")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.22772333, 0.93764406, 0.2626131, -0.5350585, -0.34582892, 0.7707885, 0.8135447, 0.03501329, 0.5804477, 4.1358657, 3.6349897, 0.25271344)
@@ -28,27 +31,3 @@ environment = SubResource("Environment_7182s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5522566, 0)
 
 [node name="craft_speederA2" parent="." instance=ExtResource("3_4msxo")]
-
-[node name="meteor2" parent="." instance=ExtResource("4_5fb3c")]
-transform = Transform3D(0.58029497, 0.3009919, -0.92373174, 1.0050116, -0.115075365, 0.5579882, 0.065323375, -0.90338254, -0.37884995, 10.542728, 5.7844243, 11.239493)
-
-[node name="meteor3" parent="." instance=ExtResource("4_5fb3c")]
-transform = Transform3D(-0.07978134, 0.9968124, 0, -0.2978551, -0.023839269, -0.9543134, -0.9512714, -0.0761364, 0.2988076, -8.508438, -4.4045477, 6.8891516)
-
-[node name="meteor4" parent="." instance=ExtResource("4_5fb3c")]
-transform = Transform3D(-0.008977565, 0, -1.2178122, -0.991281, 0.5431268, 0.008819323, 0.49620187, 1.0850247, -0.004414656, 4.7280974, 4.0219827, -6.8869295)
-
-[node name="meteor5" parent="." instance=ExtResource("4_5fb3c")]
-transform = Transform3D(-0.2369302, -0.36942357, 1.072604, 0.88017404, 0.11567121, 0.35224226, -0.17254934, 1.0972997, 0.32397786, -8.380842, 0, -4.966317)
-
-[node name="meteor6" parent="." instance=ExtResource("4_5fb3c")]
-transform = Transform3D(-0.54758126, 0.28844652, -0.78546387, -0.7278255, 0.29893517, 0.61717725, 0.41282538, 0.9096353, 0.046247434, 10.630632, 0, 1.6556559)
-
-[node name="meteor7" parent="." instance=ExtResource("4_5fb3c")]
-transform = Transform3D(0.37069622, -0.27418768, 0.88735867, 0.9135037, -0.06478996, -0.4016381, 0.16761614, 0.95949113, 0.2264541, -5.3902726, 0, 1.6556559)
-
-[node name="meteor8" parent="." instance=ExtResource("4_5fb3c")]
-transform = Transform3D(-0.7738523, 0.086619064, -0.6274152, -0.6211786, 0.089599594, 0.77853, 0.12365169, 0.9922041, -0.015530948, 3.7416434, -3.8412194, -5.3643084)
-
-[node name="meteor9" parent="." instance=ExtResource("4_5fb3c")]
-transform = Transform3D(0.8507652, -0.4360611, 0.2933414, 0.4945164, 0.8531796, -0.16594633, -0.1779101, 0.2862435, 0.94149494, 3.0474029, -1.0974467, 4.3549347)
