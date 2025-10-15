@@ -40,7 +40,9 @@ func clear_objects():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
 	if Input.is_action_pressed("debug_1"):
-		clear_objects()
-		spawn_objects()
+		#clear_objects()
+		#spawn_objects()
+		var camera = get_viewport().get_camera_3d()
+		if camera:
+			camera.shake(1.0)
