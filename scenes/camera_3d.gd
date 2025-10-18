@@ -1,8 +1,8 @@
 extends Camera3D
 
 var shake_strength := 0.0
-var shake_decay := 0.8      # 揺れが収まる速さ
-var shake_amount := 0.6     # 揺れの強さ（3Dでは小さめ）
+var shake_decay := 0.4      # 揺れが収まる速さ
+var shake_amount := 0.4     # 揺れの強さ（3Dでは小さめ）
 var shake_offset := Vector3.ZERO
 
 func _ready():

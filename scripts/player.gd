@@ -18,7 +18,7 @@ const LEFT_Y = JOY_AXIS_LEFT_Y
 const RIGHT_X = JOY_AXIS_RIGHT_X
 const RIGHT_Y = JOY_AXIS_RIGHT_Y
 
-@onready var camera = $Camera3D
+@onready var camera = $Pivot/Camera3D
 @onready var pivot = $Pivot
 
 # カメラ左右回転量
@@ -67,3 +67,14 @@ func _physics_process(delta):
 	velocity = velocity.move_toward(target_velocity, (move_acceleration if direction.length() > 0 else move_deceleration) * delta)
 		
 	move_and_slide()
+
+
+
+func _on_area_3d_body_entered(body) -> void:
+	if body.is_in_group("meteor"):
+		camera.shake()
+		var dir = (global_position - body.global_position).normalized()
+		var bounce_force = 3.0
+		velocity += dir * bounce_force
+		body.velocity -= dir * bounce_force
+		

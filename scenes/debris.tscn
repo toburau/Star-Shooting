@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0l4ionlnoo6u"]
+
+[ext_resource type="PackedScene" uid="uid://cinu044k0kbfc" path="res://models/debris.glb" id="1_wkiee"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s4vdx"]
+radius = 0.7305864
+
+[node name="Node3D" type="Node3D"]
+
+[node name="debris" parent="." instance=ExtResource("1_wkiee")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_s4vdx")
