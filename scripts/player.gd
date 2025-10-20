@@ -77,4 +77,8 @@ func _on_area_3d_body_entered(body) -> void:
 		var bounce_force = 3.0
 		velocity += dir * bounce_force
 		body.velocity -= dir * bounce_force
+	elif body.is_in_group("debris"):
+		camera.shake()
+		# 爆発などの演出
+		body.queue_free()
 		

@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0l4ionlnoo6u"]
+[gd_scene load_steps=4 format=3 uid="uid://b0l4ionlnoo6u"]
 
+[ext_resource type="Script" uid="uid://cayfsyw5j0yqk" path="res://scenes/debris.gd" id="1_s4vdx"]
 [ext_resource type="PackedScene" uid="uid://cinu044k0kbfc" path="res://models/debris.glb" id="1_wkiee"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wkiee"]
 radius = 0.6596892
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["debris"]]
+script = ExtResource("1_s4vdx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_wkiee")
