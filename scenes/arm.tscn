@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj2hhrcm3s4es"]
+
+[ext_resource type="Script" uid="uid://c8hqlcgg57uvq" path="res://scenes/arm.gd" id="1_muf2m"]
+[ext_resource type="PackedScene" uid="uid://ctcmt4xloyob0" path="res://models/arm.glb" id="1_q8oh2"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_muf2m")
+
+[node name="arm" parent="." instance=ExtResource("1_q8oh2")]
