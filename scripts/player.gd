@@ -9,6 +9,8 @@ extends CharacterBody3D
 @export var move_deceleration := 1.0
 @export var rot_x_smoothness := 1.0
 @export var rot_y_smoothness := 1.0
+@export var arm_speed := 0.1
+
 
 const deadzone = 0.13
 
@@ -26,7 +28,11 @@ var look_x_current := 0.0
 # カメラ上下角度
 var pitch_current := 0.0
 var pitch := 0.0
-
+# アーム座標
+var arm_off_z := 0.2
+var arm_on_z := -0.5
+var arm_z = arm_off_z
+var arm_moving := false
 
 func _ready():
 	pass
@@ -68,6 +74,19 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
+	if Input.is_action_just_pressed("action"):
+		if arm_moving:
+			arm_moving = false
+			arm_z = arm_off_z
+		else:
+			arm_moving = true
+			arm_z = arm_on_z
+			$arm/AnimationPlayer.play("Move")
+	$arm.position.z = arm_z
+	
+			
+			
+		
 
 
 func _on_area_3d_body_entered(body) -> void:
