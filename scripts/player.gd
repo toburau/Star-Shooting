@@ -9,7 +9,7 @@ extends CharacterBody3D
 @export var move_deceleration := 1.0
 @export var rot_x_smoothness := 1.0
 @export var rot_y_smoothness := 1.0
-@export var arm_speed := 0.1
+@export var arm_speed := 1.0
 
 
 const deadzone = 0.13
@@ -31,8 +31,9 @@ var pitch := 0.0
 # アーム座標
 var arm_off_z := 0.2
 var arm_on_z := -0.5
-var arm_z = arm_off_z
-var arm_moving := false
+var arm_duration = 2.0
+var arm_time = 0
+var arm_state := 0
 
 func _ready():
 	pass
@@ -56,6 +57,14 @@ func _physics_process(delta):
 	# --- 移動（左スティック） ---
 	var move_x = Input.get_joy_axis(0, LEFT_X)
 	var move_y = Input.get_joy_axis(0, LEFT_Y)
+	if Input.is_action_pressed("move_left"):
+		move_x -= 1.0
+	if Input.is_action_pressed("move_right"):
+		move_x += 1.0
+	if Input.is_action_pressed("move_forward"):
+		move_y -= 1.0
+	if Input.is_action_pressed("move_backward"):
+		move_y += 1.0
 	var direction = Vector3.ZERO
 	var forward = -pivot.global_transform.basis.z
 	var right = pivot.global_transform.basis.x
@@ -75,19 +84,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 	if Input.is_action_just_pressed("action"):
-		if arm_moving:
-			arm_moving = false
-			arm_z = arm_off_z
-		else:
-			arm_moving = true
-			arm_z = arm_on_z
-			$arm/AnimationPlayer.play("Move")
-	$arm.position.z = arm_z
-	
-			
-			
-		
-
+		$Pivot/Camera3D/arm.move()
 
 func _on_area_3d_body_entered(body) -> void:
 	if body.is_in_group("meteor"):
