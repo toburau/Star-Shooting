@@ -18,7 +18,11 @@ func _process(delta: float) -> void:
 	match arm_state:
 		0: #待機
 			arm_time = 0
+			$arm/Area3D/CollisionShape3D.disabled = true
+			$CollisionShape3D.disabled = true
 		1: #伸びる
+			$arm/Area3D/CollisionShape3D.disabled = false
+			$CollisionShape3D.disabled = false
 			arm_time += arm_speed * delta
 			arm_rate = arm_time / arm_duration
 			if arm_rate >= 1.0:
