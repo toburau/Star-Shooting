@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://ctcmt4xloyob0" path="res://models/arm.glb" id="1_q8oh2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_muf2m"]
-size = Vector3(1.1582031, 2.091278, 0.48840332)
+size = Vector3(1.1582031, 3.1481857, 0.48840332)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dy6di"]
-size = Vector3(1.1519165, 2.093689, 0.477417)
+size = Vector3(1.1519165, 3.1581726, 0.477417)
 
 [node name="ArmBody" type="CharacterBody3D"]
 collision_layer = 4
@@ -19,9 +19,9 @@ script = ExtResource("1_muf2m")
 [node name="Area3D" type="Area3D" parent="arm"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="arm/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009765625, 1.0475311, 0.007873535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009765625, 1.575985, 0.007873535)
 shape = SubResource("BoxShape3D_muf2m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00033569336, 1.0453796, 0.0067749023)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00033569336, 1.5776215, 0.0067749023)
 shape = SubResource("BoxShape3D_dy6di")
