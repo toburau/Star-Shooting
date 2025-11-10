@@ -22,6 +22,7 @@ const RIGHT_Y = JOY_AXIS_RIGHT_Y
 
 @onready var camera = $Pivot/Camera3D
 @onready var pivot = $Pivot
+@onready var arm = $Pivot/Camera3D/arm
 
 # カメラ左右回転量
 var look_x_current := 0.0
@@ -36,7 +37,7 @@ var arm_time = 0
 var arm_state := 0
 
 func _ready():
-	pass
+	arm.touched.connect(_on_arm_touched)
 
 func _input(event):
 	pass
@@ -98,3 +99,10 @@ func _on_area_3d_body_entered(body) -> void:
 		# 爆発などの演出
 		body.queue_free()
 		
+func _on_arm_touched(body) -> void:
+	if body.is_in_group("meteor"):
+		var dir = (global_position - body.global_position).normalized()
+		var bounce_force = 3.0
+		body.velocity -= dir * bounce_force
+	elif body.is_in_group("debris"):
+		print("debris")

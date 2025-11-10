@@ -9,6 +9,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
 
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 6
 script = ExtResource("1_4flbx")
 
 [node name="Pivot" type="Node3D" parent="."]
@@ -18,13 +19,13 @@ fov = 60.0
 script = ExtResource("2_g2els")
 
 [node name="arm" parent="Pivot/Camera3D" instance=ExtResource("5_qlg0r")]
-transform = Transform3D(0.3, 0, 0, 0, 0.10260605, 0.2819078, 0, -0.2819078, 0.10260605, 0, -0.4, -0.5)
+transform = Transform3D(0.3, 0, 0, 0, 0.05209447, 0.29544234, 0, -0.29544234, 0.05209447, 0, -0.4, -0.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_onrkg")
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_mask = 2
+collision_mask = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)

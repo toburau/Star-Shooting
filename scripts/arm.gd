@@ -1,8 +1,8 @@
 extends Node3D
 
 @export var arm_speed := 1.0
-var arm_off_z := 0.3
-var arm_on_z := -0.5
+@export var arm_off_z := 0.8
+@export var arm_on_z := -0.6
 var arm_duration = 2.0
 var arm_time = 0
 var arm_state := 0
@@ -47,3 +47,9 @@ func _process(delta: float) -> void:
 	
 func move() -> void:
 	arm_state = 1
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	emit_signal("touched", body)
+	
+signal touched(body)

@@ -9,14 +9,16 @@ size = Vector3(1.1582031, 3.1481857, 0.48840332)
 [sub_resource type="BoxShape3D" id="BoxShape3D_dy6di"]
 size = Vector3(1.1519165, 3.1581726, 0.477417)
 
-[node name="ArmBody" type="CharacterBody3D"]
-collision_layer = 4
+[node name="ArmBody" type="CharacterBody3D" groups=["arm"]]
+collision_layer = 8
 collision_mask = 6
 script = ExtResource("1_muf2m")
 
 [node name="arm" parent="." instance=ExtResource("1_q8oh2")]
 
 [node name="Area3D" type="Area3D" parent="arm"]
+collision_layer = 8
+collision_mask = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="arm/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009765625, 1.575985, 0.007873535)
@@ -25,3 +27,5 @@ shape = SubResource("BoxShape3D_muf2m")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00033569336, 1.5776215, 0.0067749023)
 shape = SubResource("BoxShape3D_dy6di")
+
+[connection signal="body_entered" from="arm/Area3D" to="." method="_on_area_3d_body_entered"]
