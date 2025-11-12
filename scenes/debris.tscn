@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0l4ionlnoo6u"]
 
-[ext_resource type="Script" uid="uid://cayfsyw5j0yqk" path="res://scenes/debris.gd" id="1_s4vdx"]
+[ext_resource type="Script" uid="uid://cayfsyw5j0yqk" path="res://scripts/debris.gd" id="1_s4vdx"]
 [ext_resource type="PackedScene" uid="uid://cinu044k0kbfc" path="res://models/debris.glb" id="1_wkiee"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wkiee"]
