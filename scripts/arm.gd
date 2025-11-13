@@ -5,7 +5,7 @@ extends Node3D
 @export var arm_on_z := -0.6
 var arm_rate = 0
 var arm_state := 0
-@export var close_speed := 4.0
+@export var close_speed := 6.0
 var catch_object: Node3D = null
 var catch_position: Vector3
 
@@ -37,8 +37,9 @@ func _process(delta: float) -> void:
 				arm_rate = 0.0
 				arm_state = 0
 				$arm/AnimationPlayer.seek(0, true)
-				catch_object.queue_free()
-				catch_object = null
+				if catch_object:
+					catch_object.queue_free()
+					catch_object = null
 	position.z = lerp(arm_off_z, arm_on_z, arm_rate)
 	if catch_object:
 		var diff = global_position - catch_position
