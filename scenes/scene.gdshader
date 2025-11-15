@@ -13,7 +13,7 @@ void fragment() {
     } else {
         // 円の内側は元のテクスチャをそのまま表示
         //COLOR = texture(TEXTURE, UV);
-		COLOR = vec4(0.0, 0.0, 0.0, 1.0);
+		COLOR = vec4(0.5, 0.5, 0.5, 0.8);
 	}
 
 
