@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhjcp37hd5oe8"]
+[gd_scene load_steps=13 format=3 uid="uid://dhjcp37hd5oe8"]
 
 [ext_resource type="Script" uid="uid://dl2s8xos1jjei" path="res://scripts/scene.gd" id="1_5fb3c"]
 [ext_resource type="PackedScene" uid="uid://clnf7jp81ft7r" path="res://scenes/player.tscn" id="2_5fb3c"]
 [ext_resource type="Texture2D" uid="uid://dicfkr133bci6" path="res://images/starmap_8k.jpg" id="2_gjmho"]
 [ext_resource type="PackedScene" uid="uid://b0tvwu4ae7ied" path="res://scenes/meteor.tscn" id="2_t7and"]
 [ext_resource type="PackedScene" uid="uid://b0l4ionlnoo6u" path="res://scenes/debris.tscn" id="3_gjmho"]
-[ext_resource type="Shader" uid="uid://dmvqdgjqe7cvh" path="res://scenes/scene.gdshader" id="6_t7and"]
+[ext_resource type="Shader" uid="uid://dmvqdgjqe7cvh" path="res://scripts/scene.gdshader" id="6_t7and"]
+[ext_resource type="Script" uid="uid://ckgnn470b3s3i" path="res://scripts/radar_dots.gd" id="7_ruw3y"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_t7and"]
 panorama = ExtResource("2_gjmho")
@@ -38,6 +39,8 @@ environment = SubResource("Environment_7182s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5522566, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+offset = Vector2(20, 20)
+transform = Transform2D(1, 0, 0, 1, 20, 20)
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -48,11 +51,11 @@ offset_bottom = 40.0
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
 material = SubResource("ShaderMaterial_ruw3y")
 layout_mode = 0
-offset_left = 25.0
-offset_top = 25.0
-offset_right = 225.0
-offset_bottom = 225.0
+offset_right = 200.0
+offset_bottom = 200.0
 texture = SubResource("CanvasTexture_t7and")
 stretch_mode = 4
 
-[node name="Node2D" type="Node2D" parent="CanvasLayer/Control"]
+[node name="RadarDots" type="Node2D" parent="CanvasLayer/Control" node_paths=PackedStringArray("player")]
+script = ExtResource("7_ruw3y")
+player = NodePath("../../../Player")

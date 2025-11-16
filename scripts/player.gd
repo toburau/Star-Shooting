@@ -39,7 +39,7 @@ var arm_state := 0
 func _ready():
 	arm.touched.connect(_on_arm_touched)
 
-func _input(event):
+func _input(_event):
 	pass
 
 func _physics_process(delta):

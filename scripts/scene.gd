@@ -11,6 +11,7 @@ var spawned_objects: Array = []  # ここに生成したノードを記録して
 func _ready() -> void:
 	randomize()
 	spawn_objects()
+	$CanvasLayer/Control/RadarDots.add_targets()
 
 func spawn_object(scene: PackedScene):
 	if scene == null:
@@ -43,7 +44,7 @@ func clear_objects():
 	spawned_objects.clear()	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed("debug_1"):
 		#clear_objects()
 		#spawn_objects()
