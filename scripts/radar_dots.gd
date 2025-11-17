@@ -48,4 +48,4 @@ func _draw():
 		draw_circle(pos_2d, 4.0, Color(1,0,0))
 
 func _process(_delta):
-	_draw()  # _draw を更新
+	queue_redraw()
