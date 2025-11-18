@@ -8,7 +8,7 @@ var targets: Array[Node]  # 表示したい敵やアイテムなど
 var radar_radius := 100.0
 
 # 実際にレーダーに表示する距離の最大値（ゲーム内距離）
-@export var radar_range := 20.0
+@export var radar_range := 40.0
 
 func _ready():
 	pass
@@ -34,7 +34,7 @@ func _draw():
 		var pos_2d = Vector2(diff.x, diff.z)
 
 		# プレイヤーの向きに合わせて回転
-		var angle = -player.global_rotation.y
+		var angle = player.global_rotation.y
 		pos_2d = pos_2d.rotated(angle)
 
 		# スケールをレーダーサイズに合わせる
