@@ -45,6 +45,10 @@ func clear_objects():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	
+	var debris = get_tree().get_nodes_in_group("debris").size()
+	$CanvasLayer/Label.text = "Debris: %d" % debris 
+	
 	if Input.is_action_pressed("debug_1"):
 		#clear_objects()
 		#spawn_objects()

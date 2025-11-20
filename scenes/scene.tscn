@@ -17,6 +17,8 @@ sky_material = SubResource("PanoramaSkyMaterial_t7and")
 [sub_resource type="Environment" id="Environment_7182s"]
 background_mode = 2
 sky = SubResource("Sky_ruw3y")
+sdfgi_enabled = true
+sdfgi_energy = 20.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ruw3y"]
 shader = ExtResource("6_t7and")
@@ -27,10 +29,14 @@ shader = ExtResource("6_t7and")
 script = ExtResource("1_5fb3c")
 meteor_scene = ExtResource("2_t7and")
 debris_scene = ExtResource("3_gjmho")
+spawn_meteor_count = null
+spawn_area_size = null
+spawn_debris_count = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.22772333, 0.93764406, 0.2626131, -0.5350585, -0.34582892, 0.7707885, 0.8135447, 0.03501329, 0.5804477, 4.1358657, 3.6349897, 0.25271344)
 shadow_enabled = true
+shadow_opacity = 0.2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7182s")
@@ -59,3 +65,9 @@ stretch_mode = 4
 [node name="RadarDots" type="Node2D" parent="CanvasLayer/Control" node_paths=PackedStringArray("player")]
 script = ExtResource("7_ruw3y")
 player = NodePath("../../../Player")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 20
+text = "Debris : 0"
