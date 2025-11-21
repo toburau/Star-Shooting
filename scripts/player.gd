@@ -90,6 +90,7 @@ func _physics_process(delta):
 func _on_area_3d_body_entered(body) -> void:
 	if body.is_in_group("meteor"):
 		camera.shake()
+		$CrushSound.play()
 		var dir = (global_position - body.global_position).normalized()
 		var bounce_force = 3.0
 		velocity += dir * bounce_force
