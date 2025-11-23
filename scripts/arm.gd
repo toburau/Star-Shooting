@@ -31,6 +31,7 @@ func _process(delta: float) -> void:
 		2: #アーム閉じ待ち
 			if not $arm/AnimationPlayer.is_playing():
 				arm_state = 3
+				$ArmSound.play()
 		3: #縮む
 			arm_rate -= arm_speed * delta
 			if arm_rate <= 0.0:
@@ -38,6 +39,7 @@ func _process(delta: float) -> void:
 				arm_state = 0
 				$arm/AnimationPlayer.seek(0, true)
 				if catch_object:
+					$ArmGetDebrisSound.play()
 					catch_object.queue_free()
 					catch_object = null
 	position.z = lerp(arm_off_z, arm_on_z, arm_rate)
@@ -50,17 +52,20 @@ func move() -> void:
 	if arm_state != 0:
 		return
 	arm_state = 1
+	$ArmSound.play()
 
 func arm_close() -> void:
 	$arm/AnimationPlayer.speed_scale = close_speed
 	$arm/AnimationPlayer.play("Move")
 	arm_state = 2
+	$ArmCloseSound.play()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	emit_signal("touched", body)
 	if body.is_in_group("debris"):
 		catch_object = body
 		catch_position = global_position
+		$ArmHitSound.play()
 		if body.has_method("catched"):
 			body.catched()
 	if arm_state == 1:

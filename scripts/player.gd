@@ -106,5 +106,6 @@ func _on_arm_touched(body) -> void:
 		var dir = (global_position - body.global_position).normalized()
 		var bounce_force = 3.0
 		body.velocity -= dir * bounce_force
+		$ArmHitMeteorSound.play()
 	elif body.is_in_group("debris"):
 		pass

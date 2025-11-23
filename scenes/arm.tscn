@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dj2hhrcm3s4es"]
+[gd_scene load_steps=9 format=3 uid="uid://dj2hhrcm3s4es"]
 
 [ext_resource type="Script" uid="uid://c8hqlcgg57uvq" path="res://scripts/arm.gd" id="1_muf2m"]
 [ext_resource type="PackedScene" uid="uid://ctcmt4xloyob0" path="res://models/arm.glb" id="1_q8oh2"]
+[ext_resource type="AudioStream" uid="uid://bq5f3vqheno5i" path="res://sound/arm.mp3" id="3_dy6di"]
+[ext_resource type="AudioStream" uid="uid://dmcm3d55hmtq3" path="res://sound/arm_close.mp3" id="4_3j5xu"]
+[ext_resource type="AudioStream" uid="uid://y7b7th618bb7" path="res://sound/hit.mp3" id="5_k0nq1"]
+[ext_resource type="AudioStream" uid="uid://chdxskmifjby7" path="res://sound/get_debris.mp3" id="6_mg0tv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_muf2m"]
 size = Vector3(1.1582031, 3.1481857, 0.48840332)
@@ -27,5 +31,18 @@ shape = SubResource("BoxShape3D_muf2m")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00033569336, 1.5776215, 0.0067749023)
 shape = SubResource("BoxShape3D_dy6di")
+
+[node name="ArmSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_dy6di")
+
+[node name="ArmCloseSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_3j5xu")
+volume_db = -23.742
+
+[node name="ArmHitSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_k0nq1")
+
+[node name="ArmGetDebrisSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_mg0tv")
 
 [connection signal="body_entered" from="arm/Area3D" to="." method="_on_area_3d_body_entered"]
