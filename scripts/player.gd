@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 # parameters
 @export var speed = 5.0
-@export var updown_scale = 1.0
+@export var updown_scale = 2.0
 @export var left_sensitivity: float = 0.8
 @export var right_sensitivity: float = 1.0
 @export var move_acceleration := 2.0
@@ -36,6 +36,9 @@ var arm_duration = 2.0
 var arm_time = 0
 var arm_state := 0
 
+var move_input_flag = false
+var rotate_input_flag = false
+
 func _ready():
 	arm.touched.connect(_on_arm_touched)
 
@@ -45,6 +48,7 @@ func _input(_event):
 func _physics_process(delta):
 	
 	# --- カメラ回転(右スティック) ----
+	var input_look = false
 	var look_x = Input.get_joy_axis(0, RIGHT_X)
 	var look_y = Input.get_joy_axis(0, RIGHT_Y)
 	look_x = look_x if abs(look_x) > deadzone else 0.0
@@ -54,6 +58,16 @@ func _physics_process(delta):
 	pitch_current = lerp(pitch_current, -look_y * right_sensitivity, rot_y_smoothness * delta)
 	pitch += pitch_current * delta
 	pivot.rotation.x = pitch
+	if look_x != 0:
+		input_look = true
+	if look_y != 0:
+		input_look = true
+	if input_look == true:
+		if rotate_input_flag == false:
+			rotate_input_flag = true
+			#$MoveShipSound.play()
+	else:
+		rotate_input_flag = false
 
 	# --- 移動（左スティック） ---
 	var move_x = Input.get_joy_axis(0, LEFT_X)
@@ -70,14 +84,26 @@ func _physics_process(delta):
 	var forward = -pivot.global_transform.basis.z
 	var right = pivot.global_transform.basis.x
 	var up = pivot.global_transform.basis.y
+	var is_input = false
 	if abs(move_x) > deadzone:
 		direction += right * move_x     # 左右
+		is_input = true
 	if abs(move_y) > deadzone:
 		direction -= forward * move_y     # 前後（Y軸とは別）
+		is_input = true
 	if Input.is_action_pressed("move_up"):
 		direction += up * updown_scale
+		is_input = true
 	if Input.is_action_pressed("move_down"):
+		is_input = true
 		direction -= up * updown_scale
+
+	if is_input == true:
+		if move_input_flag == false:
+			move_input_flag = true
+			$MoveShipLowSound.play()
+	else:
+		move_input_flag = false
 
 	var target_velocity = direction.normalized() * speed
 	velocity = velocity.move_toward(target_velocity, (move_acceleration if direction.length() > 0 else move_deceleration) * delta)
