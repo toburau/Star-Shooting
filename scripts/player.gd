@@ -45,8 +45,7 @@ func _ready():
 func _input(_event):
 	pass
 
-func _physics_process(delta):
-	
+func rotate_camera(delta):
 	# --- カメラ回転(右スティック) ----
 	var input_look = false
 	var look_x = Input.get_joy_axis(0, RIGHT_X)
@@ -69,6 +68,28 @@ func _physics_process(delta):
 	else:
 		rotate_input_flag = false
 
+func rotate_camera2(delta):
+	var look_x = Input.get_joy_axis(0, RIGHT_X)
+	var look_y = Input.get_joy_axis(0, RIGHT_Y)
+	look_x = look_x if abs(look_x) > deadzone else 0.0
+	look_y = look_y if abs(look_y) > deadzone else 0.0
+	var look_dir = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	if look_dir.length() > 0:
+		# 1. 縦の回転 (ピッチ: 自分のローカルX軸で回る)
+		$Pivot.rotate_object_local(Vector3.RIGHT, -look_dir.y * right_sensitivity * delta)
+		# 2. 横の回転 (ヨー: 自分のローカルY軸で回る)
+		$Pivot.rotate_object_local(Vector3.UP, -look_dir.x * right_sensitivity * delta)
+		# 【重要】回転行列の補正
+		# 計算を繰り返すと数値誤差でスケールが歪むことがあるため、正規化します
+		$Pivot.transform = $Pivot.transform.orthonormalized()
+		
+		$Pivot.rotation.z = 0
+
+func _physics_process(delta):
+	
+	rotate_camera(delta)	
+	#rotate_camera2(delta)
+	
 	# --- 移動（左スティック） ---
 	var move_x = Input.get_joy_axis(0, LEFT_X)
 	var move_y = Input.get_joy_axis(0, LEFT_Y)
