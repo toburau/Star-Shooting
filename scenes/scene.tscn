@@ -29,9 +29,6 @@ shader = ExtResource("6_t7and")
 script = ExtResource("1_5fb3c")
 meteor_scene = ExtResource("2_t7and")
 debris_scene = ExtResource("3_gjmho")
-spawn_meteor_count = null
-spawn_area_size = null
-spawn_debris_count = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.22772333, 0.93764406, 0.2626131, -0.5350585, -0.34582892, 0.7707885, 0.8135447, 0.03501329, 0.5804477, 4.1358657, 3.6349897, 0.25271344)
@@ -71,3 +68,20 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 20
 text = "Debris : 0"
+
+[node name="ClearText" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -11.5
+offset_right = 75.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "All debris cleared!"
+horizontal_alignment = 1
+vertical_alignment = 1

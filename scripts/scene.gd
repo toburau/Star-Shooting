@@ -3,7 +3,7 @@ extends Node3D
 @export var debris_scene: PackedScene
 @export var spawn_meteor_count := 100
 @export var spawn_area_size := Vector3(50, 50, 50)  # 配置範囲
-@export var spawn_debris_count := 10
+@export var spawn_debris_count := 1
 
 var spawned_objects: Array = []  # ここに生成したノードを記録しておく
 
@@ -12,6 +12,7 @@ func _ready() -> void:
 	randomize()
 	spawn_objects()
 	$CanvasLayer/Control/RadarDots.add_targets()
+	$CanvasLayer/ClearText.modulate.a = 0
 
 func spawn_object(scene: PackedScene):
 	if scene == null:
@@ -48,7 +49,10 @@ func _process(_delta: float) -> void:
 	
 	var debris = get_tree().get_nodes_in_group("debris").size()
 	$CanvasLayer/Label.text = "Debris: %d" % debris 
-	
+
+	if debris == 0:
+		$CanvasLayer/ClearText.modulate.a = 1.0
+
 	if Input.is_action_pressed("debug_1"):
 		#clear_objects()
 		#spawn_objects()
