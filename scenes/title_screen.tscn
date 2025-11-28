@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cq3ig7r6tktgc"]
+[gd_scene load_steps=2 format=3 uid="uid://cq3ig7r6tktgc"]
+
+[ext_resource type="Script" uid="uid://k1csygm2g0l3" path="res://scripts/title_screen.gd" id="1_fgkus"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -9,6 +11,7 @@ offset_top = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fgkus")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -54,3 +57,8 @@ theme_override_font_sizes/font_size = 60
 text = "EXIT"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="focus_entered" from="VBoxContainer/ButtonStart" to="." method="_on_button_start_focus_entered"]
+[connection signal="pressed" from="VBoxContainer/ButtonStart" to="." method="_on_button_start_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/ButtonExit" to="." method="_on_button_exit_focus_entered"]
+[connection signal="pressed" from="VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]

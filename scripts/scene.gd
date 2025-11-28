@@ -3,7 +3,7 @@ extends Node3D
 @export var debris_scene: PackedScene
 @export var spawn_meteor_count := 100
 @export var spawn_area_size := Vector3(50, 50, 50)  # 配置範囲
-@export var spawn_debris_count := 1
+@export var spawn_debris_count := 10
 
 var spawned_objects: Array = []  # ここに生成したノードを記録しておく
 
