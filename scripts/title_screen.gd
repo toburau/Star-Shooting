@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 func _on_button_start_pressed() -> void:
 	$AudioStreamPlayer.stream = preload("res://sound/accept.mp3")
 	$AudioStreamPlayer.play()
+	$VBoxContainer/ButtonExit.modulate.a = 0
 	await $AudioStreamPlayer.finished
 	get_tree().change_scene_to_file("res://scenes/scene.tscn")
 
@@ -24,6 +25,7 @@ func _on_button_start_pressed() -> void:
 func _on_button_exit_pressed() -> void:
 	$AudioStreamPlayer.stream = preload("res://sound/accept.mp3")
 	$AudioStreamPlayer.play()
+	$VBoxContainer/ButtonStart.modulate.a = 0
 	await $AudioStreamPlayer.finished
 	get_tree().quit()
 
