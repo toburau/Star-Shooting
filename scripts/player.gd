@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var rot_x_smoothness := 1.0
 @export var rot_y_smoothness := 1.0
 @export var arm_speed := 1.0
-
+@export var life = 3
 
 const deadzone = 0.13
 
@@ -38,6 +38,8 @@ var arm_state := 0
 
 var move_input_flag = false
 var rotate_input_flag = false
+
+
 
 func _ready():
 	arm.touched.connect(_on_arm_touched)
@@ -136,6 +138,7 @@ func _physics_process(delta):
 
 func _on_area_3d_body_entered(body) -> void:
 	if body.is_in_group("meteor"):
+		life = life - 1
 		camera.shake()
 		$CrushSound.play()
 		var dir = (global_position - body.global_position).normalized()
@@ -143,7 +146,8 @@ func _on_area_3d_body_entered(body) -> void:
 		velocity += dir * bounce_force
 		body.velocity -= dir * bounce_force
 	elif body.is_in_group("debris"):
-		if not arm.catch_object:	 
+		if not arm.catch_object:
+			life = life - 1	 
 			camera.shake()
 			# 爆発などの演出
 			body.queue_free()

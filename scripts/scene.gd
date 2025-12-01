@@ -5,8 +5,11 @@ extends Node3D
 @export var spawn_area_size := Vector3(50, 50, 50)  # 配置範囲
 @export var spawn_debris_count := 10
 
+const LIFE_IMAGE = preload("res://images/shield_bronze.png")
+
 var spawned_objects: Array = []  # ここに生成したノードを記録しておく
 var clear_flag = false
+var life_objects: Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,6 +17,15 @@ func _ready() -> void:
 	spawn_objects()
 	$CanvasLayer/Control/RadarDots.add_targets()
 	$CanvasLayer/ClearText.modulate.a = 0
+	
+	# life icon
+	var viewport_size: Vector2 = $CanvasLayer.get_viewport().size	
+	for i in $Player.life:
+		var sprite = Sprite2D.new()
+		sprite.texture = LIFE_IMAGE
+		sprite.position = Vector2(viewport_size.x - 40 - i * 36, 20)
+		$CanvasLayer.add_child(sprite)
+		life_objects.append(sprite)
 
 func spawn_object(scene: PackedScene):
 	if scene == null:
