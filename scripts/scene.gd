@@ -10,6 +10,7 @@ const LIFE_IMAGE = preload("res://images/shield_bronze.png")
 var spawned_objects: Array = []  # ここに生成したノードを記録しておく
 var clear_flag = false
 var life_objects: Array = []
+var gameover_flag = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,6 +18,7 @@ func _ready() -> void:
 	spawn_objects()
 	$CanvasLayer/Control/RadarDots.add_targets()
 	$CanvasLayer/ClearText.modulate.a = 0
+	$CanvasLayer/GameOverText.modulate.a = 0
 	
 	# life icon
 	var viewport_size: Vector2 = $CanvasLayer.get_viewport().size	
@@ -58,18 +60,33 @@ func clear_objects():
 	spawned_objects.clear()	
 
 func clear_scene():
-	$AudioStreamPlayer.play()
+	$ClearSound.play()
 	$CanvasLayer/ClearText.modulate.a = 1.0
 	await get_tree().create_timer(3.0).timeout
 	get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
 
+func gameover_scene():
+	$GameoverSound.play()
+	$CanvasLayer/GameOverText.modulate.a = 1.0
+	await get_tree().create_timer(3.0).timeout
+	get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	
 	var debris = get_tree().get_nodes_in_group("debris").size()
 	$CanvasLayer/Label.text = "Debris: %d" % debris 
 
-	if debris == 0 and clear_flag == false:
+	for obj in life_objects:
+		obj.visible = false
+	for i in $Player.life:
+		life_objects[i].visible = true
+	if $Player.life == 0 and gameover_flag == false:
+		gameover_flag = true
+		await get_tree().create_timer(0.5).timeout
+		gameover_scene()	
+
+	if debris == 0 and clear_flag == false and gameover_flag == false:
 		clear_flag = true
 		await get_tree().create_timer(1.0).timeout
 		clear_scene()

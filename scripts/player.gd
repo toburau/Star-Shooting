@@ -121,7 +121,7 @@ func _physics_process(delta):
 		is_input = true
 		direction -= up * updown_scale
 
-	if is_input == true:
+	if is_input == true and life > 0:
 		if move_input_flag == false:
 			move_input_flag = true
 			$MoveShipLowSound.play()
@@ -130,10 +130,12 @@ func _physics_process(delta):
 
 	var target_velocity = direction.normalized() * speed
 	velocity = velocity.move_toward(target_velocity, (move_acceleration if direction.length() > 0 else move_deceleration) * delta)
-		
+	if life == 0:
+		velocity = Vector3.ZERO
+
 	move_and_slide()
 
-	if Input.is_action_just_pressed("action"):
+	if Input.is_action_just_pressed("action") and life > 0:
 		$Pivot/Camera3D/arm.move()
 
 func _on_area_3d_body_entered(body) -> void:
