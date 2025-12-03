@@ -152,6 +152,7 @@ func _on_area_3d_body_entered(body) -> void:
 			life = life - 1	 
 			camera.shake()
 			# 爆発などの演出
+			$CrushSound.play()
 			body.queue_free()
 		
 func _on_arm_touched(body) -> void:
