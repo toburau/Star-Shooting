@@ -44,32 +44,37 @@ environment = SubResource("Environment_7182s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5522566, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-offset = Vector2(20, 20)
-transform = Transform2D(1, 0, 0, 1, 20, 20)
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
 material = SubResource("ShaderMaterial_ruw3y")
 layout_mode = 0
-offset_right = 200.0
-offset_bottom = 200.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 220.0
 texture = SubResource("CanvasTexture_t7and")
 stretch_mode = 4
 
 [node name="RadarDots" type="Node2D" parent="CanvasLayer/Control" node_paths=PackedStringArray("player")]
+position = Vector2(20, 20)
 script = ExtResource("7_ruw3y")
 player = NodePath("../../../Player")
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 28.0
 theme_override_font_sizes/font_size = 20
 text = "Debris : 0"
+metadata/_edit_use_anchors_ = true
 
 [node name="ClearText" type="Label" parent="CanvasLayer"]
 anchors_preset = 8
@@ -104,6 +109,15 @@ theme_override_font_sizes/font_size = 60
 text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7058824)
 
 [node name="ClearSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_7182s")

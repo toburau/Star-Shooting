@@ -19,6 +19,7 @@ func _ready() -> void:
 	$CanvasLayer/Control/RadarDots.add_targets()
 	$CanvasLayer/ClearText.modulate.a = 0
 	$CanvasLayer/GameOverText.modulate.a = 0
+	$CanvasLayer/ColorRect.visible = false
 	
 	# life icon
 	var viewport_size: Vector2 = $CanvasLayer.get_viewport().size	
@@ -75,7 +76,7 @@ func gameover_scene():
 func _process(_delta: float) -> void:
 	
 	var debris = get_tree().get_nodes_in_group("debris").size()
-	$CanvasLayer/Label.text = "Debris: %d" % debris 
+	$CanvasLayer/Control/Label.text = "Debris: %d" % debris 
 
 	for obj in life_objects:
 		obj.visible = false
@@ -91,6 +92,7 @@ func _process(_delta: float) -> void:
 		await get_tree().create_timer(1.0).timeout
 		clear_scene()
 
-	if Input.is_action_pressed("debug_1"):
-		clear_objects()
+	if Input.is_action_just_pressed("ui_menu"):
+		var v = $CanvasLayer/ColorRect.visible
+		$CanvasLayer/ColorRect.visible = !v
 		#spawn_objects()
