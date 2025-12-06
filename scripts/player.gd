@@ -137,6 +137,7 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("action") and life > 0:
 		$Pivot/Camera3D/arm.move()
+		pass
 
 func _on_area_3d_body_entered(body) -> void:
 	if body.is_in_group("meteor"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhjcp37hd5oe8"]
+[gd_scene load_steps=17 format=3 uid="uid://dhjcp37hd5oe8"]
 
 [ext_resource type="Script" uid="uid://dl2s8xos1jjei" path="res://scripts/scene.gd" id="1_5fb3c"]
 [ext_resource type="PackedScene" uid="uid://clnf7jp81ft7r" path="res://scenes/player.tscn" id="2_5fb3c"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://ckgnn470b3s3i" path="res://scripts/radar_dots.gd" id="7_ruw3y"]
 [ext_resource type="AudioStream" uid="uid://lt3a4aro4ugn" path="res://sound/clear_sound.mp3" id="8_7182s"]
 [ext_resource type="AudioStream" uid="uid://crgva21vttfy3" path="res://sound/bomb.mp3" id="9_tpwpp"]
+[ext_resource type="AudioStream" uid="uid://dw62tm8u81fcm" path="res://sound/menu_open.mp3" id="10_dqloj"]
+[ext_resource type="AudioStream" uid="uid://c1ae634xv71eb" path="res://sound/menu_close.mp3" id="11_5yiy0"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_t7and"]
 panorama = ExtResource("2_gjmho")
@@ -119,8 +121,44 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7058824)
 
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
+z_index = 200
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.5
+offset_top = -65.0
+offset_right = 81.5
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonResume" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="ButtonTitle" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Title"
+
 [node name="ClearSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_7182s")
 
 [node name="GameoverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_tpwpp")
+
+[node name="MenuOpenSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_dqloj")
+volume_db = -6.0
+
+[node name="MenuCloseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_5yiy0")
+volume_db = -6.0
+
+[connection signal="pressed" from="CanvasLayer/ColorRect/VBoxContainer/ButtonResume" to="." method="_on_button_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/VBoxContainer/ButtonTitle" to="." method="_on_button_title_pressed"]
