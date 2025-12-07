@@ -30,6 +30,7 @@ shader = ExtResource("6_t7and")
 [sub_resource type="CanvasTexture" id="CanvasTexture_t7and"]
 
 [node name="Stage" type="Node3D"]
+process_mode = 3
 script = ExtResource("1_5fb3c")
 meteor_scene = ExtResource("2_t7and")
 debris_scene = ExtResource("3_gjmho")
@@ -43,6 +44,7 @@ shadow_opacity = 0.2
 environment = SubResource("Environment_7182s")
 
 [node name="Player" parent="." instance=ExtResource("2_5fb3c")]
+process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5522566, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

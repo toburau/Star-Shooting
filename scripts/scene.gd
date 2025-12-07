@@ -80,8 +80,10 @@ func menu_open():
 	$MenuOpenSound.play()
 	$CanvasLayer/ColorRect.visible = true
 	$CanvasLayer/ColorRect/VBoxContainer/ButtonResume.grab_focus()
+	get_tree().paused = true
 
 func menu_close():
+	get_tree().paused = false
 	$MenuCloseSound.play()
 	$CanvasLayer/ColorRect.visible = false
 	
@@ -111,6 +113,12 @@ func _process(_delta: float) -> void:
 			menu_open()
 		else:
 			menu_close()
+			
+	if Input.is_action_just_pressed("debug_1"):
+		Engine.time_scale = 0
+	if Input.is_action_just_pressed("debug_2"):
+		Engine.time_scale = 1
+
 
 func _on_button_resume_pressed() -> void:
 	menu_close()
